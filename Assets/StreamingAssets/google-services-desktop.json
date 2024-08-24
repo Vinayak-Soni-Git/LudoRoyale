@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "234625823700",
+    "project_id": "ludoroyale-a550d",
+    "storage_bucket": "ludoroyale-a550d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234625823700:android:626e24f12deafce0af5c41",
+        "android_client_info": {
+          "package_name": "com.defaultcompany.ludoroyale"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234625823700-m61q27uqi5llptq440872m2eqqfet8t0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.defaultcompany.ludoroyale",
+            "certificate_hash": "c0a32fb69cb6f61c9309bcee1b4d4ac3e7a5be7a"
+          }
+        },
+        {
+          "client_id": "234625823700-pa1vvfk6gamkjefpbln8rf6547e9rmar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG8ut5JEOl6LKbEujKrSEAR0wnl9ooWv8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234625823700-pa1vvfk6gamkjefpbln8rf6547e9rmar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
