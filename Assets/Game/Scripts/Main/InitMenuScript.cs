@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 using SimpleJSON;
 using UnityEngine.Networking;
 using System.Collections.Generic;
+using TMPro;
+
 //using Garlic.Plugins.Webview;
 //using Garlic.Plugins.Webview.Utils;
 #if UNITY_ANDROID || UNITY_IOS
@@ -75,7 +77,7 @@ public class InitMenuScript : MonoBehaviour
 
     void Start()
     {
-        Usernotice.SetActive(true);
+        // Usernotice.SetActive(true);
         inst = this;
 
         Text[] fonts = FindObjectsOfType<Text>();
@@ -85,11 +87,11 @@ public class InitMenuScript : MonoBehaviour
         playerName.GetComponent<Text>().text = PlayerPrefs.GetString("g_name", "JHon");
         if (PlayerPrefs.GetInt(StaticStrings.SoundsKey, 0) == 0)
         {
-            AudioListener.volume = 1;
+            // AudioListener.volume = 1;
         }
         else
         {
-            AudioListener.volume = 0;
+            // AudioListener.volume = 0;
         }
         GameManager.Instance.isLocalMultiplayer = false;
         GameManager.Instance.isLocalPLay = false;
@@ -108,11 +110,11 @@ public class InitMenuScript : MonoBehaviour
         //     AudioListener.volume = 0;
         // }
 
-        FacebookLinkReward.GetComponent<Text>().text = "+ " + StaticStrings.CoinsForLinkToFacebook;
+        // FacebookLinkReward.GetComponent<Text>().text = "+ " + StaticStrings.CoinsForLinkToFacebook;
 
         if (!StaticStrings.isFourPlayerModeEnabled)
         {
-            FourPlayerMenuButton.SetActive(false);
+            // FourPlayerMenuButton.SetActive(false);
         }
 
         GameManager.Instance.FacebookLinkButton = FacebookLinkButton;
@@ -131,7 +133,7 @@ public class InitMenuScript : MonoBehaviour
         GameManager.Instance.objectGame = dialogNew;
         GameManager.Instance.dialogPlayer = dialogPlayers;
         GameManager.Instance.dialogFails = dialogfailedtofindplayers;
-        videoRewardText.GetComponent<Text>().text = "+" + StaticStrings.rewardForVideoAd;
+        // videoRewardText.GetComponent<Text>().text = "+" + StaticStrings.rewardForVideoAd;
         GameManager.Instance.tablesCanvas = tablesCanvas;
         // GameManager.Instance.facebookFriendsMenu = fbFriendsMenu.GetComponent<FacebookFriendsMenu>(); ;
         GameManager.Instance.matchPlayerObject = matchPlayer;
@@ -159,15 +161,15 @@ public class InitMenuScript : MonoBehaviour
 
         if (StaticStrings.hideCoinsTabInShop)
         {
-            coinsTab.SetActive(false);
+            // coinsTab.SetActive(false);
         }
 
 #if UNITY_WEBGL
-        coinsTab.SetActive(false);
+        // coinsTab.SetActive(false);
 #endif
 
-        rewardDialogText.GetComponent<Text>().text = "1 Video = " + StaticStrings.rewardForVideoAd + " Coins";
-        coinsText.GetComponent<Text>().text = GameManager.Instance.myPlayerData.GetCoins() + "";
+        // rewardDialogText.GetComponent<Text>().text = "1 Video = " + StaticStrings.rewardForVideoAd + " Coins";
+        coinsText.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.myPlayerData.GetCoins() + "";
         //Firebase.Messaging.FirebaseMessaging.TokenReceived += OnTokenReceived;
         //Firebase.Messaging.FirebaseMessaging.MessageReceived += OnMessageReceived;
 
@@ -223,9 +225,9 @@ public class InitMenuScript : MonoBehaviour
                 if (jsonNode["message"] == "All Details Fetched Successfully")
                 {
                     int playersTwo = UnityEngine.Random.Range(50, 99);
-                    TwoplayerOnline.text = "Online Player - 10" + playersTwo;
+                    // TwoplayerOnline.text = "Online Player - 10" + playersTwo;
                     int playersfour = UnityEngine.Random.Range(50, 99);
-                    FourplayerOnline.text = "Online Player - 4" + playersfour;
+                    // FourplayerOnline.text = "Online Player - 4" + playersfour;
 
                     int TotalCoins = 0;
                     string str = jsonNode["playerdata"]["playcoin"].Value;
@@ -246,9 +248,9 @@ public class InitMenuScript : MonoBehaviour
 
                    //     int TotalCoins = jsonNode["playerdata"]["playcoin"].Value == null ? int.Parse(jsonNode["playerdata"]["totalcoin"].Value.ToString())
                      //   : int.Parse(jsonNode["playerdata"]["playcoin"].Value.ToString());
-                    coinsText.GetComponent<Text>().text = TotalCoins.ToString();
+                    coinsText.GetComponent<TextMeshProUGUI>().text = TotalCoins.ToString();
                     GameManager.Instance.TotalCoins = TotalCoins;
-                    coinsText.GetComponent<Text>().text = TotalCoins.ToString();
+                    coinsText.GetComponent<TextMeshProUGUI>().text = TotalCoins.ToString();
                     PlayerPrefs.SetInt("Coins", TotalCoins);
                     int Refercode = jsonNode["playerdata"]["refer_code"];
                     int SignupBonus = jsonNode["gameconfig"]["signup_bonus"];
@@ -257,15 +259,15 @@ public class InitMenuScript : MonoBehaviour
                     PlayerPrefs.SetInt("ReferCode", Refercode);
                     PlayerPrefs.SetInt("SignupBonus", SignupBonus);
                     PlayerPrefs.SetString("GameName", jsonNode["gameconfig"]["website_name"]);
-                    NoticeDetails.GetComponent<Text>().text = jsonNode["gameconfig"]["notification"].Value;
-                    for (int f = 0; f < CoinList.childCount; f++)
-                        Destroy(CoinList.GetChild(f).gameObject);
-                    for (int s = 0; s < jsonNode["shop_coin"].Count; s++)
-                    {
-                    GameObject Cl =     Instantiate(CoinLister,CoinList);
-                        Cl.GetComponent<BuyItemControl>().SetBuyData(jsonNode["shop_coin"][s]["shop_coin"].Value);
+                    // NoticeDetails.GetComponent<Text>().text = jsonNode["gameconfig"]["notification"].Value;
+                    // for (int f = 0; f < CoinList.childCount; f++)
+                    //     Destroy(CoinList.GetChild(f).gameObject);
+                    // for (int s = 0; s < jsonNode["shop_coin"].Count; s++)
+                    // {
+                    // GameObject Cl =     Instantiate(CoinLister,CoinList);
+                    //     Cl.GetComponent<BuyItemControl>().SetBuyData(jsonNode["shop_coin"][s]["shop_coin"].Value);
                    
-                    }
+                    // }
 
                     if (jsonNode["gameconfig"]["min_withdraw"].Value.ToString() != "null" && !string.IsNullOrEmpty(jsonNode["gameconfig"]["min_withdraw"].Value.ToString()))
                         PlayerPrefs.SetInt("MW", int.Parse(jsonNode["gameconfig"]["min_withdraw"].Value.ToString()));
@@ -275,11 +277,11 @@ public class InitMenuScript : MonoBehaviour
                     }
                     if (!GameManager.Instance.Links)
                     {
-                        YoutubeLink = jsonNode["gameconfig"]["youtube_link"].Value.ToString();
-                        WhatsappLink = jsonNode["gameconfig"]["whatsapp_link"].Value.ToString();
-                        FacebookLink = jsonNode["gameconfig"]["telegram_link"].Value.ToString();
-                        PrivacyPolicyLink = jsonNode["gameconfig"]["website_url"].Value.ToString();
-                        ContactUSLink = jsonNode["gameconfig"]["pemail"].Value.ToString();
+                        // YoutubeLink = jsonNode["gameconfig"]["youtube_link"].Value.ToString();
+                        // WhatsappLink = jsonNode["gameconfig"]["whatsapp_link"].Value.ToString();
+                        // FacebookLink = jsonNode["gameconfig"]["telegram_link"].Value.ToString();
+                        // PrivacyPolicyLink = jsonNode["gameconfig"]["website_url"].Value.ToString();
+                        // ContactUSLink = jsonNode["gameconfig"]["pemail"].Value.ToString();
                     }
                     botEnebal = int.Parse( jsonNode["gameconfig"]["bot_status"].Value);
                     if (!string.IsNullOrEmpty(jsonNode["playerdata"]["accountHolder"].Value) && jsonNode["playerdata"]["accountHolder"].Value != "null")
@@ -319,7 +321,7 @@ public class InitMenuScript : MonoBehaviour
                     DataArray[3] = jsonNode["playerdata"]["twoPlayWin"].Value.ToString();
                     DataArray[4] = jsonNode["playerdata"]["FourPlayWin"].Value.ToString();
                     DataArray[5] = DataArray[1];
-                    NoticeText.text = jsonNode["gameconfig"]["notification"].Value;
+                    // NoticeText.text = jsonNode["gameconfig"]["notification"].Value;
 
                     if (jsonNode["playerdata"]["refrelCoin"].Value == "null")
                     {
@@ -446,11 +448,11 @@ public class InitMenuScript : MonoBehaviour
     {
         if ((PlayerPrefs.GetInt(StaticStrings.MusicKey, 0) == 0))
         {
-            BackgroundSound.Play();
+            // BackgroundSound.Play();
         }
         else
         {
-            BackgroundSound.Stop();
+            // BackgroundSound.Stop();
         }
 
 
@@ -458,7 +460,7 @@ public class InitMenuScript : MonoBehaviour
     void OnEnable()
     {
         PlayBackgroundMusic();
-        SetNoOfPlayers(0);
+        // SetNoOfPlayers(0);
     }
 
     public void Links(string w, string t)
@@ -512,6 +514,7 @@ public class InitMenuScript : MonoBehaviour
     }
 
     public GameObject List;
+    public GameObject onlineMultiplayerPanel;
 
     public void ShowGameConfiguration(int index)
     {
@@ -529,6 +532,7 @@ public class InitMenuScript : MonoBehaviour
         }
 
         List.SetActive(true);
+        onlineMultiplayerPanel.SetActive(false);
       
     }
 
@@ -724,7 +728,7 @@ public class InitMenuScript : MonoBehaviour
             InitMenuScript.inst.botTimer.SetActive(true);
         }
         value = 60;
-        InitMenuScript.inst.botTimer.GetComponent<Text>().text = "Waiting for Opponent 60 sec.";
+        InitMenuScript.inst.botTimer.GetComponent<TextMeshProUGUI>().text = "Searching for Players... 60 Sec";
         CancelInvoke("startTimerForOTP");
         InvokeRepeating("startTimerForOTP", 1, 1);
 
@@ -735,7 +739,7 @@ public class InitMenuScript : MonoBehaviour
     {
         value--;
         TimeSpan timeSpanLeft = TimeSpan.FromSeconds(value);
-        InitMenuScript.inst.botTimer.GetComponent<Text>().text = "Waiting for Opponent " + timeSpanLeft.ToString(@"ss") + " sec.";
+        InitMenuScript.inst.botTimer.GetComponent<TextMeshProUGUI>().text = "Searching for Players... " + timeSpanLeft.ToString(@"ss") + " Sec";
         if (value <= 0)
         {
             InitMenuScript.inst.botNotice.SetActive(true);

@@ -102,11 +102,11 @@ public class ControlAvatars : MonoBehaviour
 
     public void reset()
     {
-        startButtonPrivate.GetComponent<Button>().interactable = false;
-        InviteToJoinButtons[0].transform.parent.gameObject.SetActive(true);
-        InviteToJoinButtons[1].transform.parent.gameObject.SetActive(true);
+        // startButtonPrivate.GetComponent<Button>().interactable = false;
+        // InviteToJoinButtons[0].transform.parent.gameObject.SetActive(true);
+        // InviteToJoinButtons[1].transform.parent.gameObject.SetActive(true);
 
-        InviteToJoinButtons[2].transform.parent.gameObject.SetActive(true);
+        // InviteToJoinButtons[2].transform.parent.gameObject.SetActive(true);
 
         if (GameManager.Instance.type == MyGameType.Private && !GameManager.Instance.JoinedByID)
         {
@@ -155,16 +155,16 @@ public class ControlAvatars : MonoBehaviour
 
         }
 
-        RoomIDObject.SetActive(false);
+        // RoomIDObject.SetActive(false);
 
         if (GameManager.Instance.type == MyGameType.Private && !GameManager.Instance.JoinedByID)
         {
-            RoomIDObject.SetActive(true);
+            // RoomIDObject.SetActive(true);
             RoomIDText.GetComponent<Text>().text = "Fetching...";
         }
         else
         {
-            RoomIDObject.SetActive(false);
+            // RoomIDObject.SetActive(false);
         }
 
 
@@ -172,8 +172,8 @@ public class ControlAvatars : MonoBehaviour
         {
             OppoAvatar[1].SetActive(false);
             OppoAvatar[2].SetActive(false);
-            InviteToJoinButtons[1].SetActive(false);
-            InviteToJoinButtons[2].SetActive(false);
+            // InviteToJoinButtons[1].SetActive(false);
+            // InviteToJoinButtons[2].SetActive(false);
         }
         CancelButton.SetActive(false);
 
@@ -181,13 +181,13 @@ public class ControlAvatars : MonoBehaviour
         {
             if (GameManager.Instance.type != MyGameType.Private || GameManager.Instance.JoinedByID)
             {
-                InviteToJoinButtons[i].SetActive(false);
+                // InviteToJoinButtons[i].SetActive(false);
                // InviteToJoinButtons[i].transform.parent.gameObject.SetActive(false);
             }
             else
             {
-                InviteToJoinButtons[i].SetActive(true);
-                InviteToJoinButtons[i].transform.parent.gameObject.SetActive(true);
+                // InviteToJoinButtons[i].SetActive(true);
+                // InviteToJoinButtons[i].transform.parent.gameObject.SetActive(true);
              
             }
 
@@ -195,15 +195,15 @@ public class ControlAvatars : MonoBehaviour
         }
         if (GameManager.Instance.type == MyGameType.Private)
         {
-            InviteToJoinButtons[0].SetActive(true);
+            // InviteToJoinButtons[0].SetActive(true);
          //   InviteToJoinButtons[i].SetActive(true);
             if (GameManager.Instance.Subtype == MyGameSubType.PrivateTwoPlayer)
             {
-                InviteToJoinButtons[0].transform.parent.gameObject.SetActive(true);
+                // InviteToJoinButtons[0].transform.parent.gameObject.SetActive(true);
 
-                InviteToJoinButtons[1].transform.parent.gameObject.SetActive(false);
+                // InviteToJoinButtons[1].transform.parent.gameObject.SetActive(false);
 
-                InviteToJoinButtons[2].transform.parent.gameObject.SetActive(false);
+                // InviteToJoinButtons[2].transform.parent.gameObject.SetActive(false);
             }
                 
             

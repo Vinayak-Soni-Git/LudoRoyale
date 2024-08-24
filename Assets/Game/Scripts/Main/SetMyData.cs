@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 public class SetMyData : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class SetMyData : MonoBehaviour
         //name.GetComponent<Text>().text = GameManager.Instance.nameMy;
         if (GameManager.Instance.avatarMy != null)
             avatar.GetComponent<Image>().sprite = GameManager.Instance.avatarMy;
-        name.GetComponent<Text>().text = PlayerPrefs.GetString("N") ;
+        name.GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetString("N") ;
 
         controlAvatars.GetComponent<ControlAvatars>().reset();
 
