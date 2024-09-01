@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using SimpleJSON;
 using UnityEngine.Networking;
 using AssemblyCSharp;
+using TMPro;
 
 public class GameFinishWindowController : MonoBehaviour
 {
@@ -35,15 +36,15 @@ public class GameFinishWindowController : MonoBehaviour
             PrizeMainObjects[1].SetActive(false);
         }
 
-        prizeText[0].GetComponent<Text>().text = firstPlacePrize.ToString();
-        prizeText[1].GetComponent<Text>().text = secondPlacePrize.ToString();
+        prizeText[0].GetComponent<TextMeshProUGUI>().text = firstPlacePrize.ToString();
+        prizeText[1].GetComponent<TextMeshProUGUI>().text = secondPlacePrize.ToString();
 
         Window.SetActive(true);
         for (int i = 0; i < playersFinished.Count; i++)
         {
             AvatarsMain[i].SetActive(true);
             AvatarsImage[i].GetComponent<Image>().sprite = playersFinished[i].avatar;
-            Names[i].GetComponent<Text>().text = playersFinished[i].name;
+            Names[i].GetComponent<TextMeshProUGUI>().text = playersFinished[i].name;
             if (playersFinished[i].id.Equals(PhotonNetwork.player.NickName.Split('|')[1]))
             {
                 Backgrounds[i].SetActive(true);
@@ -59,7 +60,7 @@ public class GameFinishWindowController : MonoBehaviour
             }
             AvatarsMain[i].SetActive(true);
             AvatarsImage[i].GetComponent<Image>().sprite = otherPlayers[counter].avatar;
-            Names[i].GetComponent<Text>().text = otherPlayers[counter].name;
+            Names[i].GetComponent<TextMeshProUGUI>().text = otherPlayers[counter].name;
             if (otherPlayers[counter].id.Equals(PhotonNetwork.player.NickName.Split('|')[1]))
             {
                 Backgrounds[i].SetActive(true);
@@ -69,7 +70,7 @@ public class GameFinishWindowController : MonoBehaviour
             counter++;
         }
         status = "win"; WinM = PlayerPrefs.GetInt("WINAMT", 0);
-        if (Names[0].GetComponent<Text>().text != GameManager.Instance.nameMy)
+        if (Names[0].GetComponent<TextMeshProUGUI>().text != GameManager.Instance.nameMy)
         {
             WinM = 0; status = "loss";
         }

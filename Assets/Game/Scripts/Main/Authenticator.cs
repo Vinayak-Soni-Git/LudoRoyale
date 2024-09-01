@@ -103,7 +103,7 @@ public class Authenticator : MonoBehaviour
 
         LoadingScreen.SetActive(true);
         print("Item...fetched");
-       WWWForm form = new WWWForm();
+        WWWForm form = new WWWForm();
         form.AddField("first_name", PlayerPrefs.GetString("N", "Ludo Baji"));
         form.AddField("device_token", SystemInfo.deviceUniqueIdentifier);
         form.AddField("email", PlayerPrefs.GetString("g_email", "help@ludobaji.fun"));
@@ -123,6 +123,7 @@ public class Authenticator : MonoBehaviour
 
                 if (jsonNode["notice"] == "User Successfully Created !" && Agreed)
                 {
+                    LoadingScreen.SetActive(false);
                     PlayerPrefs.SetString("PID", jsonNode["playerid"].Value.ToString());
                 
                     GameManager.Instance.playfabManager.PlayFabId = jsonNode["playerid"].Value.ToString();
@@ -143,18 +144,21 @@ public class Authenticator : MonoBehaviour
                 {
                     PlayerPrefs.SetString("PID", jsonNode["playerid"].Value.ToString());
 
-                    // GameManager.Instance.playfabManager.PlayFabId = jsonNode["playerid"].Value.ToString();
-                    // GameManager.Instance.nameMy = PlayerPrefs.GetString("g_name", "JHON");
+                    GameManager.Instance.playfabManager.PlayFabId = jsonNode["playerid"].Value.ToString();
+                    GameManager.Instance.nameMy = PlayerPrefs.GetString("g_name", "JHON");
+                    LoadingScreen.SetActive(false);
                     Invoke("Lobby", 2.0f);
 
                 }
                 if (jsonNode["notice"] == "User Used Diffrent Device")
                 {
+                    LoadingScreen.SetActive(false);
                     DeviceError.SetActive(true);
 
                 }
                 if (jsonNode["notice"] == "User Banned")
                 {
+                    LoadingScreen.SetActive(false);
                     BannedAccount.SetActive(true);
 
                 }

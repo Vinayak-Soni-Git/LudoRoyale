@@ -23,6 +23,8 @@ public class PlayerAvatarController : MonoBehaviour
     public bool finished = false;
     public int skipsCOunt = 0;
     public AudioSource PlayerLeftRoomAudio;
+
+    public Sprite redHeartSprite;
     // Use this for initialization
     void Start()
     {
@@ -229,7 +231,7 @@ public class PlayerAvatarController : MonoBehaviour
             {
                 finished = false;
                 print("lostgame by skip");
-                //    FindObjectOfType<GameGUIController>().LostGame();
+                FindObjectOfType<GameGUIController>().LostGame();
                 PlayerLeftRoom(false); 
             }
             else
@@ -237,9 +239,8 @@ public class PlayerAvatarController : MonoBehaviour
 
                 GameManager.Instance.WonBySkip = true;
                 print("won by skip");
-               PlayerLeftRoom(true);
-            
-                //    FindObjectOfType<GameGUIController>().GameOver();
+                PlayerLeftRoom(true);
+                FindObjectOfType<GameGUIController>().GameOver();
             }
         }
         /*
@@ -293,8 +294,8 @@ public class PlayerAvatarController : MonoBehaviour
           //  Active = false;
             Debug.Log("Left the room");
          //   Name.GetComponent<Text>().text = "";
-            MainObject.transform.localScale = new Vector2(0.8f, 0.8f);
-            leftRoomObject.SetActive(true);
+            // MainObject.transform.localScale = new Vector2(0.8f, 0.8f);
+            // leftRoomObject.SetActive(true);
         }
         FindObjectOfType<GameGUIController>().requiredToStart-- ;
         FindObjectOfType<GameGUIController>().ActivePlayersInRoom-- ;
@@ -308,7 +309,7 @@ public class PlayerAvatarController : MonoBehaviour
 
     public void setPositionSprite(int index)
     {
-        Position.SetActive(true);
-        Position.GetComponent<Image>().sprite = PositionSprites[index - 1];
+        // Position.SetActive(true);
+        // Position.GetComponent<Image>().sprite = PositionSprites[index - 1];
     }
 }

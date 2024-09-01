@@ -99,7 +99,7 @@ public class UpdatePlayerTimer : MonoBehaviour
             if (!GameManager.Instance.CountedSkip && !GameManager.Instance.isLocalPLay)
             {
                 print("Yess counting skiiops");
-                transform.parent.parent.parent.parent.GetComponent<PlayerAvatarController>().CountSkips(myTimer);
+                transform.parent.parent.parent.GetComponent<PlayerAvatarController>().CountSkips(myTimer);
         }
             if (myTimer && !GameManager.Instance.isLocalPLay)
                 {

@@ -124,7 +124,7 @@ public class GameGUIController : PunBehaviour
 
 
         int rotation = UnityEngine.Random.Range(0, 4);
-        Timer = 999989656;
+        Timer = 600;
         string min = ((int)(Timer / 60)).ToString();
         string sec = ((int)(Timer % 60)).ToString();
         if (min.Length == 1)
@@ -141,6 +141,7 @@ public class GameGUIController : PunBehaviour
 
         if ((GameManager.Instance.isLocalMultiplayer && GameManager.Instance.isPlayingWithComputer) || GameManager.Instance.isLocalPLay)
         {
+            print("In a condition");
             PrizeTopBar.SetActive(false);
             requiredToStart = 0;
             PlayerPrefs.SetInt("EN", 0);
@@ -152,7 +153,7 @@ public class GameGUIController : PunBehaviour
 
         if (PhotonNetwork.isMasterClient)
         {
-
+            print("In PhotonNetwork is master client");
             photonView.RPC("SyncNames", PhotonTargets.OthersBuffered, GameManager.Instance.opponentsNames[0], GameManager.Instance.opponentsNames[1], GameManager.Instance.opponentsNames[2], GameManager.Instance.opponentsAvatarsIndex[0], GameManager.Instance.opponentsAvatarsIndex[1], GameManager.Instance.opponentsAvatarsIndex[2]);
             Proceed();
         }
@@ -165,10 +166,12 @@ public class GameGUIController : PunBehaviour
     [PunRPC]
     public void SyncNames(string name1, string name2, string name3, int b1, int b2, int b3)
     {
+        Debug.LogError("In SyncNames");
         if (!PhotonNetwork.isMasterClient)
         {
             if (GameManager.Instance.opponentsIDs[0] != null && GameManager.Instance.opponentsIDs[0].Contains("BOT"))
             { GameManager.Instance.opponentsNames[0] = name1;
+            
                 GameManager.Instance.opponentsAvatars[0] = FindObjectOfType<StaticGameVariablesController>().avatars[b1];
             }
             if (GameManager.Instance.opponentsIDs[1] != null && GameManager.Instance.opponentsIDs[1].Contains("BOT"))
@@ -1065,7 +1068,7 @@ public class GameGUIController : PunBehaviour
 
 
             PlayerAvatarController controller = playerObjects[index].AvatarObject.GetComponent<PlayerAvatarController>();
-            controller.Name.GetComponent<Text>().text = "";
+            controller.Name.GetComponent<TextMeshProUGUI>().text = "";
             controller.Active = false;
             controller.finished = true;
 
@@ -1074,7 +1077,7 @@ public class GameGUIController : PunBehaviour
             int position = playersFinished.Count;
             if (position == 1)
             {
-                controller.Crown.SetActive(true);
+                // controller.Crown.SetActive(true);
             }
 
             if (me)
@@ -1576,14 +1579,14 @@ public class GameGUIController : PunBehaviour
         GameManager.Instance.roomOwner = false;
         // GameManager.Instance.type = MyGameType.TwoPlayer;
         GameManager.Instance.resetAllData();
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene("MainMenuScene");
             // SavingWindow.SetActive(true);
         }
         else{
         if (!iFinished || finishWindow)
         {
             PlayerPrefs.SetInt("GamesPlayed", PlayerPrefs.GetInt("GamesPlayed", 1) + 1);
-            SceneManager.LoadScene("MenuScene");
+            SceneManager.LoadScene("MainMenuScene");
             PhotonNetwork.BackgroundTimeout = StaticStrings.photonDisconnectTimeoutLong;
 
             //GameManager.Instance.cueController.removeOnEventCall();

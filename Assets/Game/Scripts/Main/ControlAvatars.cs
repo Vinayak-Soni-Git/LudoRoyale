@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using AssemblyCSharp;
+using TMPro;
 
 public class ControlAvatars : MonoBehaviour
 {
@@ -160,7 +161,7 @@ public class ControlAvatars : MonoBehaviour
         if (GameManager.Instance.type == MyGameType.Private && !GameManager.Instance.JoinedByID)
         {
             // RoomIDObject.SetActive(true);
-            RoomIDText.GetComponent<Text>().text = "Fetching...";
+            RoomIDText.GetComponent<TextMeshProUGUI>().text = "Fetching...";
         }
         else
         {
@@ -237,7 +238,7 @@ public class ControlAvatars : MonoBehaviour
         NativeShare share = new NativeShare();
         //string shareText = StaticStrings.SharePrivateLinkMessage + " " + RoomIDText.GetComponent<Text>().text + "\n\n" + StaticStrings.SharePrivateLinkMessage2 + " ";
         
-        string shareText =  "Hey Play" + PlayerPrefs.GetString("GameName") + " Join my room code is " + RoomIDText.GetComponent<Text>().text + " Let's Play Downalod App " + StaticStrings.ShareApkLink;
+        string shareText =  "Hey Play" + PlayerPrefs.GetString("GameName") + " Join my room code is " + RoomIDText.GetComponent<TextMeshProUGUI>().text + " Let's Play Downalod App " + StaticStrings.ShareApkLink;
         Debug.Log(shareText);
 #if UNITY_ANDROID
         shareText += StaticStrings.ShareApkLink;
@@ -259,7 +260,7 @@ public class ControlAvatars : MonoBehaviour
     public void updateRoomID(string id)
     {
         GameManager.Instance.privateRoomID = id;
-        RoomIDText.GetComponent<Text>().text = id;
+        RoomIDText.GetComponent<TextMeshProUGUI>().text = id;
     }
 
     public void PlayerJoined(int index, string id)
@@ -269,9 +270,9 @@ public class ControlAvatars : MonoBehaviour
 
         if (GameManager.Instance.opponentsIDs.Contains(id))
         {
-            playerJoin.Play();
+            // playerJoin.Play();
 
-            InviteToJoinButtons[index].SetActive(false);
+            // InviteToJoinButtons[index].SetActive(false);
             OppoAvatar[index].SetActive(true);
             if (GameManager.Instance.opponentsAvatars[index] != null)
                 OppoAvatarImage[index].GetComponent<Image>().sprite = GameManager.Instance.opponentsAvatars[index];
@@ -302,7 +303,7 @@ public class ControlAvatars : MonoBehaviour
         GameManager.Instance.opponentsNames[index] = null;
         GameManager.Instance.opponentsAvatars[index] = null;
         if (GameManager.Instance.type == MyGameType.Private && !GameManager.Instance.JoinedByID)
-            InviteToJoinButtons[index].SetActive(true);
+            // InviteToJoinButtons[index].SetActive(true);
         OppoAvatar[index].SetActive(false);
      
     }

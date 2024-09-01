@@ -453,7 +453,7 @@ public class PlayFabManager : Photon.PunBehaviour, IChatClientListener
             y++;
         }
 
-        GameManager.Instance.opponentsAvatars[i] = avatarSprites[MyIndex];
+            GameManager.Instance.opponentsAvatars[i] = avatarSprites[MyIndex];
             GameManager.Instance.opponentsAvatarsIndex[i] = MyIndex;
             GameManager.Instance.opponentsIDs[i] = "_BOT" + i;
     }

@@ -21,8 +21,8 @@
         // Services configration IDS
         public static string PlayFabTitleID = "5E78C";
         public static string appVersionNumber = "V0001";
-        public static string PhotonAppID = "b0374032-2db3-470a-a96c-eecf96bbe645";
-        public static string PhotonChatID = "d1c8450a-e8f4-4b53-8ea6-95e0e296d80d";
+        public static string PhotonAppID = "2ae53645-66a8-4747-955f-75f1ab469767";
+		public static string PhotonChatID = "d6ca017b-a8da-4e1a-80f7-8f6d542ad79c";
 
         // Facebook share variables
         public static string facebookShareLinkTitle = "I'm playing Ludo Dream " +
